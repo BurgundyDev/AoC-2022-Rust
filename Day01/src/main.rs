@@ -2,11 +2,11 @@ use std::fs;
 
 fn main()
 {
-    day1("test_input.txt");
-    day1("input.txt");
+    day01("test_input.txt");
+    day01("input.txt");
 }
 
-fn day1(file_path: &str)
+fn day01(file_path: &str)
 {
     let mut elfs: Vec<u32> = Vec::<u32>::new();
     let mut current_elf: u32 = 0;
@@ -14,8 +14,9 @@ fn day1(file_path: &str)
     
     for line in input.lines()
     {
-        if let Ok(food) = line.parse::<u32>()
+        if !line.is_empty()
         {
+            let food = line.parse::<u32>().unwrap();
             current_elf += food;
         } else
         {
@@ -23,7 +24,6 @@ fn day1(file_path: &str)
             current_elf = 0;
         }
     };
-
     elfs.push(current_elf);
 
     elfs.sort();
