@@ -36,7 +36,6 @@ fn day1(file_path: &str)
             }
         }
         elfs.push(current_elf);
-        current_elf = 0;
 
         elfs.sort();
         elfs.reverse();
