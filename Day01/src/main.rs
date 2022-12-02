@@ -1,4 +1,4 @@
-use std::fs;
+use aoc2022::read_file;
 
 fn main()
 {
@@ -10,7 +10,7 @@ fn day01(file_path: &str)
 {
     let mut elfs: Vec<u32> = Vec::<u32>::new();
     let mut current_elf: u32 = 0;
-    let input: String = if let Ok(input) = fs::read_to_string(file_path) { input } else { String::from("Loading failed!") };
+    let input: String = read_file(file_path);
     
     for line in input.lines()
     {

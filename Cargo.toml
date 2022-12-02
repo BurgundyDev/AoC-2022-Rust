@@ -5,7 +5,7 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [workspace]
-members = ["day01", "day02"]
+members = ["Day01", "Day02"]
 
 [workspace.dependencies]
 aoc2022 = { path = ".", version = "0.2.2" }

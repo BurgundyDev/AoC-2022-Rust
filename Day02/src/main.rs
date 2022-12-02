@@ -1,4 +1,4 @@
-use std::fs;
+use aoc2022::read_file;
 
 fn main()
 {
@@ -11,7 +11,8 @@ fn main()
 fn part01(file_path: &str) -> u32
 {
     let mut points: u32 = 0;
-    let input: String = if let Ok(input) = fs::read_to_string(file_path) { input } else { String::from("Loading failed!") };
+    
+    let input: String = read_file(file_path);
     
     for line in input.lines()
     {
@@ -75,7 +76,7 @@ fn part01(file_path: &str) -> u32
 fn part02(file_path: &str) -> u32
 {
     let mut points: u32 = 0;
-    let input: String = if let Ok(input) = fs::read_to_string(file_path) { input } else { String::from("Loading failed!") };
+    let input: String = read_file(file_path);
     
     for line in input.lines()
     {
