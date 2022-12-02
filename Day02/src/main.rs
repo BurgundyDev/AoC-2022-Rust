@@ -1,9 +1,3 @@
-/*
-A/X - Rock
-B/Y - Paper
-C/Z - Scissors
-*/
-
 use std::fs;
 
 fn main()
