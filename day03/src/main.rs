@@ -93,7 +93,7 @@ fn part2(file_path: &str) -> i32
     }
 
     let mut finit = 0;
-    for _rucksack in 0..(data.len()/3)
+    while finit < data.len()
     {
         let mut done = false;
         for number in &data[finit]
