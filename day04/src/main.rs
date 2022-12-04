@@ -34,7 +34,6 @@ fn part1(file_path: &str) -> u32
     {
         if (row[0] >= row[2] && row[1] <= row[3]) || (row[0] <= row[2] && row[1] >= row[3])
         {
-            println!("{}-{},{}-{}", row[0], row[1], row[2], row[3]);
             overlap += 1;
         }
     }
@@ -66,9 +65,8 @@ fn part2(file_path: &str) -> u32
 
     for row in data
     {
-        if (row[0] >= row[2] && row[0] <= row[3]) || (row[2] >= row[0] && row[2] <= row[1]) || (row[1] >= row[2] && row[1] <= row[3]) || (row[3] >= row[0] && row[3] <= row[1])
+        if row[0] <= row[3] && row[1] >= row[2]
         {
-            println!("{}-{},{}-{}", row[0], row[1], row[2], row[3]);
             overlap += 1;
         }
     }
