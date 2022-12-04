@@ -1,5 +1,3 @@
-use std::str::Chars;
-
 use aoc2022::read_file;
 
 fn main()
@@ -66,7 +64,6 @@ fn part2(file_path: &str) -> i32
 {
     let input = read_file(file_path);
 
-    let mut data: Vec<Chars<>> = Vec::new();
     let mut data: Vec<Vec<i32>> = Vec::new();
 
     let mut sum_of_priorities: i32 = 0;
