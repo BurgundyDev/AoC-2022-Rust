@@ -3,7 +3,7 @@ use aoc2022::read_file;
 fn main()
 {
     println!("{}", part1("test_input.txt"));
-    // println!("{}", part1("input.txt"));
+    println!("{}", part1("input.txt"));
     // println!("{}", part2("test_input.txt"));
     // println!("{}", part2("input.txt"));
 }
@@ -30,7 +30,7 @@ fn get_stacks(input: String) -> Vec<Vec<char>>
         {
             if character.is_alphabetic()
             {
-                let mut stack = (pos - 1)/4;
+                let stack = (pos - 1)/4;
                 if stack < stacks.len()
                 {
                     stacks[stack].push(character);
@@ -45,7 +45,7 @@ fn get_stacks(input: String) -> Vec<Vec<char>>
     let mut row = 1;
     for stack in &stacks
     {
-        print!("Row {}: ", row);
+        print!("Stack {}: ", row);
         for character in stack
         {
             print!("[{}] ", character)
@@ -60,6 +60,7 @@ fn get_stacks(input: String) -> Vec<Vec<char>>
 fn part1(file_path: &str) -> String
 {
     let input = read_file(file_path);
-    get_stacks(input);
+    let mut stacks = get_stacks(input);
+
     return String::from("");
 }
