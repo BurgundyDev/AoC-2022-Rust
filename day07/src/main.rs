@@ -66,6 +66,8 @@ fn part1(file_path: &str) -> i32
         full_directories.insert(dir.to_string(), value);
     }
     
+    drop(directories);
+
     let mut final_val = 0;
     for (dir, val) in &full_directories
     {
@@ -140,6 +142,8 @@ fn part2(file_path: &str) -> i32
 
         full_directories.insert(dir.to_string(), value);
     }
+
+    drop(directories);
 
     let base_fs = 70000000;
     let space_upd = 30000000;
