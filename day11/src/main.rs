@@ -27,7 +27,9 @@ fn unworry(item: i32) -> i32
 }
 
 impl Monkey {
-    fn test_items(&mut self, targets: &mut Vec<Monkey>) {
+    fn test_items(&mut self) -> Vec<Vec<i32>> {
+        let mut to_true: Vec<i32> = Vec::new();
+        let mut to_false: Vec<i32> = Vec::new();
         for (index, item) in self.items.iter_mut().enumerate() {
             match self.operation {
                 Operation::Add => *item += self.operator,
@@ -39,12 +41,13 @@ impl Monkey {
             *item = *item / 3;
 
             if *item % self.test == 0 {
-                targets[self.true_target].items.push(*item);
+                to_true.push(*item);
             } else {
-                targets[self.false_target].items.push(*item)
+                to_false.push(*item)
             }
         }
         self.items = Vec::new();
+        vec![to_true, to_false]
     }
 }
 
@@ -87,5 +90,8 @@ fn part1(file_path: &str) {
         monkeys.push(monkey);
     }
 
+    for mut monkey in &mut monkeys {
+        let mut items_passed = monkey.test_items();
+    }
 
 }
