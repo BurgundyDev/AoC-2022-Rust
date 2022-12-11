@@ -21,11 +21,6 @@ struct Monkey {
     false_target: usize,
 }
 
-fn unworry(item: i32) -> i32
-{
-    (item + 3 - 1) / 3
-}
-
 impl Monkey {
     fn test_items(&mut self) -> Vec<Vec<i32>> {
         let mut to_true: Vec<i32> = Vec::new();
