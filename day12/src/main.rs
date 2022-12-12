@@ -50,7 +50,7 @@ fn get_neighbours(coord: Point, map: &Vec<Vec<i32>>) -> Vec<Point> {
     res
 }
 
-fn part1(file_path: &str) -> u32 {
+fn day12(file_path: &str) -> (Vec<Vec<i32>>, Point, Point) {
     let input = read_file(file_path);
     let mut map: Vec<Vec<i32>> = Vec::new();
 
@@ -75,9 +75,15 @@ fn part1(file_path: &str) -> u32 {
         }
     }
 
-    println!("{:?}", map);
+    // println!("{:?}", map);
     println!("Start point: {:?}", start_point);
     println!("End point: {:?}", end_point);
+
+    (map, start_point, end_point)
+}
+
+fn part1(file_path: &str) -> u32 {
+    let (map, start_point, end_point) = day12(file_path);
 
     let mut pq: BinaryHeap<Node> = BinaryHeap::new();
     let mut visited: HashSet<Point> = HashSet::new();
@@ -113,29 +119,8 @@ fn part1(file_path: &str) -> u32 {
 }
 
 fn part2(file_path: &str) -> u32 {
-    let input = read_file(file_path);
-    let mut map: Vec<Vec<i32>> = Vec::new();
 
-    for line in input.lines()
-    {
-        let row: Vec<i32> = line.chars().map(|c| c as i32 - 97).collect();
-        map.push(row);
-    }
-
-    let mut start_point = Point { x: 0, y: 0};
-    let mut end_point = Point { x: 0, y: 0};
-
-    for (y, row) in map.iter_mut().enumerate() {
-        for (x, loc) in row.iter_mut().enumerate() {
-            if *loc == -14 {
-                *loc = 0;
-                start_point = Point { x: x, y: y};
-            } else if *loc == -28 {
-                *loc = 25;
-                end_point = Point { x: x, y: y};
-            }
-        }
-    }
+    let (map, start_point, end_point) = day12(file_path);
 
     // println!("{:?}", map);
     println!("Start point: {:?}", start_point);
