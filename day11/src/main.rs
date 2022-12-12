@@ -177,7 +177,7 @@ fn part2(file_path: &str) -> u64 {
     let mut all_monkey_business: Vec<u64> = Vec::new();
     for monkey in monkeys {
         // println!("{:?} - {}", monke.items, monke.monkey_business);
-        all_monkey_business.push(monkey.monkey_business.try_into().unwrap())
+        all_monkey_business.push(monkey.monkey_business)
     }
     all_monkey_business.sort();
     all_monkey_business.reverse();
