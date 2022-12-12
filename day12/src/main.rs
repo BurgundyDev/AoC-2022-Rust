@@ -120,19 +120,13 @@ fn part1(file_path: &str) -> u32 {
 
 fn part2(file_path: &str) -> u32 {
 
-    let (map, start_point, end_point) = day12(file_path);
-
-    // println!("{:?}", map);
-    println!("Start point: {:?}", start_point);
-    println!("End point: {:?}", end_point);
+    let (map, _start_point, end_point) = day12(file_path);
 
     let mut pq: BinaryHeap<Node> = BinaryHeap::new();
     let mut visited: HashSet<Point> = HashSet::new();
 
     pq.push(Node { cost: (0), location: (end_point) });
     visited.insert(end_point);
-
-    // println!("{:?}", get_neighbours(start_point, &map));
 
     while let Some(Node { cost, location }) = pq.pop() {
         if map[location.y][location.x] == 0 {
