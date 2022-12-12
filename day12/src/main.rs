@@ -1,5 +1,5 @@
 use aoc2022::read_file;
-use std::collections::{ BinaryHeap, HashSet};
+use std::collections::{BinaryHeap, HashSet};
 use core::{cmp::Ordering, panic};
 
 fn main() {
@@ -75,7 +75,6 @@ fn day12(file_path: &str) -> (Vec<Vec<i32>>, Point, Point) {
         }
     }
 
-    // println!("{:?}", map);
     println!("Start point: {:?}", start_point);
     println!("End point: {:?}", end_point);
 
