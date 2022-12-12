@@ -4,7 +4,7 @@ fn main() {
     part1("test_input.txt");
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 enum Operation {
     Add,
     Mul,
@@ -12,6 +12,7 @@ enum Operation {
     MulOld,
 }
 
+#[derive(Debug, Clone)]
 struct Monkey {
     items: Vec<i32>,
     operator: i32,
@@ -22,9 +23,7 @@ struct Monkey {
 }
 
 impl Monkey {
-    fn test_items(&mut self) -> Vec<Vec<i32>> {
-        let mut to_true: Vec<i32> = Vec::new();
-        let mut to_false: Vec<i32> = Vec::new();
+    fn test_items(&mut self, targets: &mut Vec<Monkey>) {
         for (index, item) in self.items.iter_mut().enumerate() {
             match self.operation {
                 Operation::Add => *item += self.operator,
@@ -36,13 +35,12 @@ impl Monkey {
             *item = *item / 3;
 
             if *item % self.test == 0 {
-                to_true.push(*item);
+                targets[self.true_target].items.push(*item);
             } else {
-                to_false.push(*item)
+                targets[self.false_target].items.push(*item)
             }
         }
         self.items = Vec::new();
-        vec![to_true, to_false]
     }
 }
 
@@ -50,7 +48,7 @@ fn part1(file_path: &str) {
     let input = read_file(file_path);
 
     // init monkeys!
-    let data: Vec<&str> = input.split("\n\r\n").collect();
+    let data: Vec<&str> = input.split("\r\n\r\n").collect();
 
     let mut monkeys: Vec<Monkey> = Vec::new();
 
@@ -85,8 +83,9 @@ fn part1(file_path: &str) {
         monkeys.push(monkey);
     }
 
-    for mut monkey in &mut monkeys {
-        let mut items_passed = monkey.test_items();
+    
+    for monke in monkeys.iter_mut() {
+        monke.test_items(&mut monkeys);
     }
 
 }
