@@ -104,13 +104,13 @@ fn part1(file_path: &str) -> i32
 
     let mut unique_pos: HashSet::<Vec<i32>> = HashSet::new();
 
-    let mut Head = End
+    let mut head = End
     {
         x: 0,
         y: 0
     };
 
-    let mut Tail = End
+    let mut tail = End
     {
         x: 0,
         y: 0
@@ -122,7 +122,7 @@ fn part1(file_path: &str) -> i32
         let direction = line.split(" ").collect::<Vec<&str>>()[0];
         let steps: i32 = line.split(" ").collect::<Vec<&str>>()[1].parse().unwrap();
         
-        let line_pos = Head.move_head(direction, steps, 1, vec![&mut Tail]);
+        let line_pos = head.move_head(direction, steps, 1, vec![&mut tail]);
 
         unique_pos.extend(line_pos);
     }
@@ -136,20 +136,20 @@ fn part2(file_path: &str) -> i32
 
     let mut unique_pos: HashSet::<Vec<i32>> = HashSet::new();
 
-    let mut Head = End
+    let mut head = End
     {
         x: 0,
         y: 0
     };
-    let mut Tail1 = Head.clone();
-    let mut Tail2 = Head.clone();
-    let mut Tail3 = Head.clone();
-    let mut Tail4 = Head.clone();
-    let mut Tail5 = Head.clone();
-    let mut Tail6 = Head.clone();
-    let mut Tail7 = Head.clone();
-    let mut Tail8 = Head.clone();
-    let mut Tail9 = Head.clone();
+    let mut tail1 = head.clone();
+    let mut tail2 = head.clone();
+    let mut tail3 = head.clone();
+    let mut tail4 = head.clone();
+    let mut tail5 = head.clone();
+    let mut tail6 = head.clone();
+    let mut tail7 = head.clone();
+    let mut tail8 = head.clone();
+    let mut tail9 = head.clone();
 
     for line in input.lines()
     {
@@ -157,7 +157,7 @@ fn part2(file_path: &str) -> i32
         let direction = line.split(" ").collect::<Vec<&str>>()[0];
         let steps: i32 = line.split(" ").collect::<Vec<&str>>()[1].parse().unwrap();
         
-        let line_pos1 = Head.move_head(direction, steps, 1, vec![&mut Tail1, &mut Tail2, &mut Tail3, &mut Tail4, &mut Tail5, &mut Tail6, &mut Tail7, &mut Tail8, &mut Tail9]);
+        let line_pos1 = head.move_head(direction, steps, 1, vec![&mut tail1, &mut tail2, &mut tail3, &mut tail4, &mut tail5, &mut tail6, &mut tail7, &mut tail8, &mut tail9]);
         unique_pos.extend(line_pos1);
     }
     unique_pos.len().try_into().unwrap()
