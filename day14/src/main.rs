@@ -1,4 +1,4 @@
-use std::{i32::MAX, collections::HashSet};
+use std::collections::HashSet;
 use aoc2022::read_file;
 
 fn main() {
@@ -8,7 +8,7 @@ fn main() {
     println!("{}", part2("input.txt"));
 }
 
-fn part1(file_path: &str) -> i32 {
+fn day14(file_path: &str) -> (i32, HashSet<Vec<i32>>) {
     let mut down_bound = 0;
     let input = read_file(file_path);
     let mut blocked_tiles: HashSet<Vec<i32>> = HashSet::new();
@@ -60,6 +60,12 @@ fn part1(file_path: &str) -> i32 {
         }
     }
 
+    (down_bound, blocked_tiles)
+}
+
+fn part1(file_path: &str) -> i32 {
+
+    let (down_bound, mut blocked_tiles) = day14(file_path);
     let mut sand: HashSet<Vec<i32>> = HashSet::new();
     let mut filled = false;
     let mut grains = 0;
@@ -91,59 +97,8 @@ fn part1(file_path: &str) -> i32 {
 }
 
 fn part2(file_path: &str) -> i32 {
-    let mut down_bound = 0;
-    let input = read_file(file_path);
-    let mut blocked_tiles: HashSet<Vec<i32>> = HashSet::new();
-
-    for line in input.lines() {
-        let coords_y: Vec<i32> = line.split(" -> ").map(|s| s.split(",").collect::<Vec<&str>>()[1].parse().unwrap()).collect();
-        if coords_y.iter().max().unwrap() > &down_bound
-        {
-            down_bound = *coords_y.iter().max().unwrap();
-        }
-
-        let data = line.split(" -> ").collect::<Vec<&str>>();
-        let mut blocks: Vec<Vec<i32>> = Vec::new();
-
-        for block in data {
-            blocks.push(block.split(",").map(|s| s.parse().unwrap()).collect::<Vec<i32>>())
-        }
-        // println!("{:?}", blocks);
-
-        for i in 0..(blocks.len() - 1) {
-            let start_block = &blocks[i];
-            let end_block = &blocks[i+1];
-
-            if start_block[0] == end_block[0] {
-                if start_block[1] > end_block[1] {
-                    for j in 0..(start_block[1] - end_block[1] + 1)
-                    {
-                        blocked_tiles.insert(vec![start_block[0], end_block[1] + j]);
-                    }
-                } else {
-                    for j in 0..(end_block[1] - start_block[1] + 1)
-                    {
-                        blocked_tiles.insert(vec![start_block[0], start_block[1] + j]);
-                    }
-                }
-            } else {
-                if start_block[0] > end_block[0] {
-                    for j in 0..(start_block[0] - end_block[0] + 1)
-                    {
-                        blocked_tiles.insert(vec![end_block[0] + j, end_block[1]]);
-                    }
-                } else {
-                    for j in 0..(end_block[0] - start_block[0] + 1)
-                    {
-                        blocked_tiles.insert(vec![start_block[0] + j, end_block[1]]);
-                    }
-                }
-            }
-        }
-    }
-
+    let (down_bound, mut blocked_tiles) = day14(file_path);
     let floor = down_bound + 2;
-
     let mut sand: HashSet<Vec<i32>> = HashSet::new();
     let mut filled = false;
     let mut grains = 0;
