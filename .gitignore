@@ -12,3 +12,7 @@ Cargo.lock
 
 # Input files
 **.txt
+
+# IDE/Code editor files
+.vscode
+.idea
