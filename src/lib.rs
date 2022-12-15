@@ -1,13 +1,32 @@
-use std::fs;
-
-pub fn add(left: usize, right: usize) -> usize {
-    left + right
-}
+use std::{fs, env, path::Path, ffi::OsStr};
 
 pub fn read_file(file_path: &str) -> String
 {
-    let file = if let Ok(input) = fs::read_to_string(file_path) { input } else { String::from("Loading failed!") };
+    let file_ex = prog().unwrap() + "\\" + file_path + ".txt";
+    println!("{}", file_ex);
+    let file = if let Ok(input) = fs::read_to_string(file_path) { input } else { fs::read_to_string(file_ex).unwrap() };
     return file;
+}
+
+fn prog() -> Option<String> {
+    if cfg!(windows) {  
+        env::args().next()
+            .as_ref()
+            .map(Path::new)
+            .and_then(Path::file_name)
+            .and_then(OsStr::to_str)
+            .map(String::from)
+            .unwrap()
+            .strip_suffix(".exe")
+            .map(String::from)
+    } else {
+        env::args().next()
+            .as_ref()
+            .map(Path::new)
+            .and_then(Path::file_name)
+            .and_then(OsStr::to_str)
+            .map(String::from)
+    }
 }
 
 #[cfg(test)]
@@ -16,7 +35,6 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        assert_eq!(4, 4);
     }
 }
