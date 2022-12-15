@@ -2,8 +2,8 @@ use std::{fs, env, path::Path, ffi::OsStr};
 
 pub fn read_file(file_path: &str) -> String
 {
-    let file_ex = prog().unwrap() + "\\" + file_path + ".txt";
-    println!("{}", file_ex);
+    let file_ex = prog().unwrap() + "\\" + file_path;
+    // println!("{}", file_ex);
     let file = if let Ok(input) = fs::read_to_string(file_path) { input } else { fs::read_to_string(file_ex).unwrap() };
     return file;
 }
@@ -31,7 +31,7 @@ fn prog() -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    // use super::*;
 
     #[test]
     fn it_works() {
